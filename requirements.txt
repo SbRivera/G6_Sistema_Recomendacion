@@ -163,9 +163,6 @@ starlette==0.37.2
 sympy==1.13.2
 tensorboard==2.17.1
 tensorboard-data-server==0.7.2
-tensorflow==2.17.0
-tensorflow-intel==2.17.0
-tensorflow-recommenders==0.7.3
 termcolor==2.4.0
 terminado==0.18.1
 threadpoolctl==3.5.0
