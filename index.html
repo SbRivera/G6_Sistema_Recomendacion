@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Recommender</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0f0f2f;
+            color: #e0e0f0;
+            font-family: 'Roboto', sans-serif;
+        }
+        .anime {
+            border: 2px solid #0070f0;
+            border-radius: 10px;
+            background-color: #1f1f4f;
+            padding: 1rem;
+            transition: transform 0.3s;
+        }
+        .anime:hover {
+            transform: scale(1.05);
+        }
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto py-12">
+        <h1 class="text-4xl font-bold text-center tet-blue-500 mb-8">Recomendador de Anime</h1>
+        <form method="POST" action="/recommend" class="max-w-xl mx-auto mb-8">
+            <label for="anime_name" class="block text-xl text-blue-400 mb-2">Nombre del Anime:</label>
+            <input type="text" name="anime_name" class="w-full p-2 text-black rounded-lg" required>
+            <input type="submit" value="Recommend" class="w-full mt-4 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition">
+        </form>
+        {% if recommendations %}
+            <h2 class="text-2xl font-semibold text-blue-300 mb-4">Recomendaciones:</h2>
+            <div class="recommendations">
+                {% for rec in recommendations %}
+                    <div class="anime">
+                        <h3 class="text-xl font-semibold mb-2 text-white">{{ rec.title }}</h3>
+                        <img src="{{ rec.main_pic }}" alt="{{ rec.title }}" class="w-full h-48 object-cover mb-4 rounded-lg">
+                        <p class="text-blue-300"><strong>Episodios:</strong> {{ rec.num_episodes }}</p>
+                        <p class="text-gray-400 mt-2">{{ rec.synopsis }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
